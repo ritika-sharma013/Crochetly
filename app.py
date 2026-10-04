@@ -57,6 +57,12 @@ st.markdown(
 	.glossary-name { color: var(--ink); font-weight: 650; }
 	.glossary-description { color: var(--muted); font-size: .9rem; line-height: 1.5; margin-top: .15rem; }
 	.lesson-step { color: var(--rose-dark); font-weight: 700; }
+	.lesson-project-header { display: flex; align-items: center; gap: .9rem; margin: .8rem 0 1.2rem; }
+	.lesson-project-emoji { font-size: 2.5rem; line-height: 1; }
+	.lesson-project-title { color: var(--ink); font-size: 1.45rem; font-weight: 700; line-height: 1.25; }
+	.lesson-progress-label { color: var(--rose-dark); font-size: .82rem; font-weight: 700; margin-bottom: .35rem; }
+	.completion-mark { font-size: 3rem; line-height: 1; margin-bottom: .8rem; }
+	.completion-copy { color: var(--muted); font-size: 1.05rem; }
 	.quiet-note { border-left: 3px solid #c98a78; padding: .7rem 1rem; color: var(--muted); background: #f7eee6; border-radius: 0 8px 8px 0; }
 	div.stButton > button {
 		border-radius: 9px;
@@ -84,6 +90,7 @@ st.markdown(
 		[data-testid="stMainBlockContainer"] { padding: 1rem 1rem 2rem; }
 		.project-title, .project-description { min-height: 0; }
 		.glossary-row { grid-template-columns: minmax(3.5rem, .3fr) minmax(0, 1fr); gap: .7rem; }
+		.lesson-project-title { font-size: 1.2rem; }
 	}
 	</style>
 	""",
@@ -167,8 +174,54 @@ def render_glossary(entries):
 
 def render_progress(step_index, step_count):
 	progress = (step_index + 1) / step_count if step_count else 0
+	st.markdown(f'<div class="lesson-progress-label">STEP {step_index + 1} OF {step_count}</div>', unsafe_allow_html=True)
 	st.progress(progress)
-	st.caption(f"Step {step_index + 1} of {step_count}")
+
+
+def build_step_context(project, step, user_question):
+	common_mistakes = step.get("common_mistakes")
+	return {
+		"project_title": project.get("title"),
+		"step_number": step.get("step_number"),
+		"step_name": step.get("name"),
+		"instruction": step.get("instruction"),
+		"stitch_count": step.get("stitch_count"),
+		"expected_result": step.get("expected_result"),
+		"common_mistakes": common_mistakes if isinstance(common_mistakes, list) else [],
+		"ai_help_context": step.get("ai_help_context"),
+		"user_question": user_question.strip(),
+	}
+
+
+def render_lesson_step(step):
+	instruction = step.get("instruction")
+	expected_result = step.get("expected_result")
+	mistakes = step.get("common_mistakes")
+	mistakes = [mistake for mistake in mistakes if isinstance(mistake, str) and mistake.strip()] if isinstance(mistakes, list) else []
+
+	if expected_result:
+		instruction_column, result_column = st.columns([1.6, 1], gap="large")
+	else:
+		instruction_column = st.container()
+		result_column = None
+
+	with instruction_column:
+		with st.container(border=True):
+			st.markdown("#### Your next move")
+			if instruction:
+				st.markdown(text(instruction))
+			if step.get("stitch_count") is not None:
+				st.markdown(f'<span class="pill">Stitch count: {text(step.get("stitch_count"))}</span>', unsafe_allow_html=True)
+			if mistakes:
+				with st.expander("A couple of things to watch for"):
+					for mistake in mistakes:
+						st.markdown(f"- {text(mistake)}")
+
+	if result_column is not None:
+		with result_column:
+			with st.container(border=True):
+				st.markdown("#### What you should have now")
+				st.markdown(text(expected_result))
 
 
 try:
@@ -184,7 +237,9 @@ if not projects:
 st.session_state.setdefault("selected_project_id", None)
 st.session_state.setdefault("lesson_started", False)
 st.session_state.setdefault("lesson_progress", {})
+st.session_state.setdefault("lesson_completed", {})
 st.session_state.setdefault("show_stuck", False)
+st.session_state.setdefault("pending_help_context", None)
 
 project_by_id = {project.get("project_id"): project for project in projects}
 selected_project = project_by_id.get(st.session_state.selected_project_id)
@@ -222,6 +277,7 @@ elif not st.session_state.lesson_started:
 		if st.button("← Back to projects", key="back_to_projects"):
 			st.session_state.selected_project_id = None
 			st.session_state.show_stuck = False
+			st.session_state.pending_help_context = None
 			st.rerun()
 	with nav_right:
 		st.markdown('<div class="brand">🧶 Crochetly</div>', unsafe_allow_html=True)
@@ -258,47 +314,75 @@ elif not st.session_state.lesson_started:
 
 # Lesson: one focused instruction at a time, ready for contextual help later.
 else:
+	project_id = selected_project.get("project_id")
 	steps = [step for step in (selected_project.get("steps") or []) if isinstance(step, dict)]
 	top_left, top_right = st.columns([1, 5])
 	with top_left:
-		if st.button("← Project", key="back_to_overview"):
+		if st.button("← Back to project", key="back_to_overview"):
 			st.session_state.lesson_started = False
 			st.session_state.show_stuck = False
+			st.session_state.pending_help_context = None
 			st.rerun()
 	with top_right:
 		st.markdown('<div class="brand">🧶 Crochetly</div>', unsafe_allow_html=True)
 
 	if not steps:
 		st.info("Lesson steps haven't been added for this project yet.")
+	elif st.session_state.lesson_completed.get(project_id, False):
+		st.write("")
+		with st.container(border=True):
+			st.markdown('<div class="completion-mark">🎉</div>', unsafe_allow_html=True)
+			st.title("You finished!")
+			st.markdown(f'<p class="completion-copy">You just completed: <strong>{text(selected_project.get("title"), "this project")}</strong></p>', unsafe_allow_html=True)
+			st.markdown('<p class="completion-copy">Nice work. Your project is officially done.</p>', unsafe_allow_html=True)
+		completion_back, review_column = st.columns([1, 1])
+		with completion_back:
+			if st.button("← Back to projects", key="completion_back_to_projects"):
+				st.session_state.selected_project_id = None
+				st.session_state.lesson_started = False
+				st.session_state.show_stuck = False
+				st.session_state.pending_help_context = None
+				st.rerun()
+		with review_column:
+			if st.button("Review lesson", key=f"review_{project_id}"):
+				st.session_state.lesson_completed[project_id] = False
+				st.session_state.lesson_progress[project_id] = 0
+				st.session_state.show_stuck = False
+				st.session_state.pending_help_context = None
+				st.rerun()
 	else:
-		project_id = selected_project.get("project_id")
 		saved_index = st.session_state.lesson_progress.get(project_id, 0)
 		step_index = max(0, min(saved_index, len(steps) - 1))
 		step = steps[step_index]
 		st.write("")
+		st.markdown(
+			f'<div class="lesson-project-header"><div class="lesson-project-emoji">{text(selected_project.get("emoji"), "🧶")}</div>'
+			f'<div class="lesson-project-title">{text(selected_project.get("title"), "Crochet project")}</div></div>',
+			unsafe_allow_html=True,
+		)
 		render_progress(step_index, len(steps))
 		st.markdown(f'<div class="lesson-step">STEP {step_index + 1:02d}</div>', unsafe_allow_html=True)
 		st.title(text(step.get("name"), f"Step {step_index + 1}"))
 
-		instruction_column, result_column = st.columns([1.6, 1], gap="large")
-		with instruction_column:
-			with st.container(border=True):
-				st.markdown("#### Your next move")
-				st.markdown(text(step.get("instruction"), "Continue with the next stitch in your pattern."))
-				if step.get("stitch_count") is not None:
-					st.markdown(f'<span class="pill">Stitch count: {text(step.get("stitch_count"))}</span>', unsafe_allow_html=True)
-				mistakes = step.get("common_mistakes") or []
-				if mistakes:
-					with st.expander("A couple of things to watch for"):
-						for mistake in mistakes:
-							st.markdown(f"- {text(mistake)}")
-		with result_column:
-			with st.container(border=True):
-				st.markdown("#### What you should have now")
-				st.markdown(text(step.get("expected_result"), "Your work should be ready for the next step."))
+		render_lesson_step(step)
 
 		if st.session_state.show_stuck:
-			st.info(f"Step-specific help can be added here. Current topic: {text(step.get('name'), 'this step')}")
+			with st.container(border=True):
+				st.markdown("#### I'm Stuck")
+				st.markdown("Tell Crochetly what went wrong and we'll help you figure it out.")
+				question = st.text_area(
+					"What went wrong?",
+					placeholder="e.g. I only have 7 stitches instead of 10. What did I do wrong?",
+					key=f"stuck_question_{project_id}_{step_index}",
+				)
+				if st.button("Get help", key=f"get_help_{project_id}_{step_index}"):
+					if question.strip():
+						st.session_state.pending_help_context = build_step_context(selected_project, step, question)
+						st.rerun()
+					st.warning("Add a little detail about what happened, and Crochetly can help you work it out.")
+				pending_context = st.session_state.pending_help_context
+				if pending_context and pending_context.get("user_question") == question.strip():
+					st.info("Your question is ready. Step-aware help will be connected here next.")
 
 		stuck_col, spacer_col, previous_col, next_col = st.columns([1.5, 2.4, 1, 1])
 		with stuck_col:
@@ -309,9 +393,18 @@ else:
 			if st.button("← Previous", key=f"previous_{project_id}_{step_index}", disabled=step_index == 0):
 				st.session_state.lesson_progress[project_id] = step_index - 1
 				st.session_state.show_stuck = False
+				st.session_state.pending_help_context = None
 				st.rerun()
 		with next_col:
-			if st.button("Next →", key=f"next_{project_id}_{step_index}", disabled=step_index >= len(steps) - 1, type="primary"):
-				st.session_state.lesson_progress[project_id] = step_index + 1
-				st.session_state.show_stuck = False
-				st.rerun()
+			if step_index < len(steps) - 1:
+				if st.button("Next →", key=f"next_{project_id}_{step_index}", type="primary"):
+					st.session_state.lesson_progress[project_id] = step_index + 1
+					st.session_state.show_stuck = False
+					st.session_state.pending_help_context = None
+					st.rerun()
+			else:
+				if st.button("Finish project ✓", key=f"finish_{project_id}", type="primary"):
+					st.session_state.lesson_completed[project_id] = True
+					st.session_state.show_stuck = False
+					st.session_state.pending_help_context = None
+					st.rerun()
