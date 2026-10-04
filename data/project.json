@@ -1,0 +1,442 @@
+{
+  "schema_version": "1.0",
+  "standard_terms": "US Crochet Terms",
+  "projects": [
+    {
+      "project_id": "flower-001",
+      "title": "Classic 5-Petal Crochet Flower",
+      "emoji": "🌸",
+      "difficulty": "Beginner",
+      "craft_type": "Crochet",
+      "estimated_time": "15–30 minutes",
+      "finished_size": "Varies with yarn and hook",
+      "source_notes": {
+        "type": "reference_and_original_learner_version",
+        "references": [
+          "https://thecrochetdiary.com/patterns/crochetflower/",
+          "https://craftyarncouncil.com/standards/crochet-abbreviations"
+        ],
+        "note": "Construction and terminology were checked against published beginner patterns and Craft Yarn Council terminology. The learner-facing wording below is original."
+      },
+      "materials": [
+        {
+          "item": "Yarn",
+          "detail": "Small amount of worsted/medium-weight yarn",
+          "quantity": "Scrap amount"
+        },
+        {
+          "item": "Crochet hook",
+          "detail": "4.0 mm (US G/6) is a starting point; adjust for yarn",
+          "quantity": "1"
+        },
+        {
+          "item": "Tapestry needle",
+          "detail": "For weaving in ends",
+          "quantity": "1"
+        },
+        {
+          "item": "Scissors",
+          "detail": "For cutting yarn",
+          "quantity": "1"
+        }
+      ],
+      "stitch_glossary": [
+        {
+          "abbreviation": "MR",
+          "name": "Magic Ring",
+          "description": "An adjustable loop used to begin crocheting in the round."
+        },
+        {
+          "abbreviation": "ch",
+          "name": "Chain",
+          "description": "Yarn over and pull the yarn through the loop on the hook."
+        },
+        {
+          "abbreviation": "sl st",
+          "name": "Slip Stitch",
+          "description": "Insert the hook, yarn over, and pull the yarn through the stitch and the loop on the hook."
+        },
+        {
+          "abbreviation": "sc",
+          "name": "Single Crochet",
+          "description": "Insert the hook, yarn over and pull up a loop, then yarn over and pull through both loops."
+        },
+        {
+          "abbreviation": "hdc",
+          "name": "Half Double Crochet",
+          "description": "Yarn over, insert the hook, yarn over and pull up a loop, then yarn over and pull through all three loops."
+        },
+        {
+          "abbreviation": "dc",
+          "name": "Double Crochet",
+          "description": "Yarn over, insert the hook, yarn over and pull up a loop, then work off the loops two at a time."
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "name": "Create the center ring",
+          "instruction": "Make a magic ring. Keep the adjustable loop loose enough to work stitches into it.",
+          "expected_result": "You should have a small adjustable loop ready for the first round.",
+          "common_mistakes": [
+            "Making the ring too tight to insert the hook.",
+            "Confusing the yarn tail with the working yarn."
+          ],
+          "ai_help_context": "The learner is starting a magic ring and may need help identifying the working yarn and keeping the ring open."
+        },
+        {
+          "step_number": 2,
+          "name": "Work 10 single crochets",
+          "instruction": "Chain 1; this does not count as a stitch. Work 10 single crochet stitches into the magic ring.",
+          "stitch_count": 10,
+          "expected_result": "Ten single crochet stitches should sit around the center ring.",
+          "common_mistakes": [
+            "Counting the chain-1 as a stitch.",
+            "Working outside the ring instead of through the ring."
+          ],
+          "ai_help_context": "The learner needs to maintain a count of 10 single crochets and understand where the hook enters the magic ring."
+        },
+        {
+          "step_number": 3,
+          "name": "Close and join the center",
+          "instruction": "Pull the yarn tail gently to close the center. Join with a slip stitch to the first single crochet.",
+          "stitch_count": 10,
+          "expected_result": "The center should be closed with a neat circular base and no large hole.",
+          "common_mistakes": [
+            "Pulling the tail before all stitches are complete.",
+            "Joining into the chain-1 instead of the first single crochet."
+          ],
+          "ai_help_context": "The learner may be unsure which stitch is the first single crochet or how tightly to close the magic ring."
+        },
+        {
+          "step_number": 4,
+          "name": "Create five petal spaces",
+          "instruction": "Chain 3, skip the next stitch, and slip stitch into the following stitch. Repeat this sequence around the circle until you have 5 chain-3 spaces.",
+          "stitch_count": 5,
+          "expected_result": "Five evenly spaced chain-3 loops should form around the center.",
+          "common_mistakes": [
+            "Putting the slip stitch into the wrong stitch.",
+            "Losing count of the five spaces."
+          ],
+          "ai_help_context": "The learner is creating the five spaces that will hold the petals and may need help identifying a chain space."
+        },
+        {
+          "step_number": 5,
+          "name": "Build the petals",
+          "instruction": "Work into each chain-3 space, not into the stitches underneath it. In each space make: 1 sc, 1 hdc, 3 dc, 1 hdc, 1 sc. Repeat for all 5 spaces.",
+          "stitch_count": 5,
+          "expected_result": "Each chain-3 space should become one rounded petal, giving the flower five petals.",
+          "common_mistakes": [
+            "Working into the center stitches instead of the chain space.",
+            "Missing one of the three double crochets.",
+            "Making petals with different stitch sequences."
+          ],
+          "ai_help_context": "The learner is forming petals and may need help understanding that all five stitches groups are worked into the chain-3 spaces."
+        },
+        {
+          "step_number": 6,
+          "name": "Fasten off and finish",
+          "instruction": "Fasten off, leaving a short yarn tail. Use a tapestry needle to weave the ends securely into the back of the flower. Gently shape the petals.",
+          "expected_result": "The flower should hold its shape with secure ends hidden on the back.",
+          "common_mistakes": [
+            "Cutting the yarn too close to the work.",
+            "Leaving the ends unsecured."
+          ],
+          "ai_help_context": "The learner is finishing the flower and may need guidance on weaving in ends and shaping petals."
+        }
+      ]
+    },
+    {
+      "project_id": "bunny-001",
+      "title": "Beginner Mini Crochet Bunny",
+      "emoji": "🐰",
+      "difficulty": "Beginner–Intermediate",
+      "craft_type": "Amigurumi",
+      "estimated_time": "1–2 hours",
+      "finished_size": "Varies with yarn and hook",
+      "source_notes": {
+        "type": "reference_and_original_simplified_pattern",
+        "references": [
+          "https://www.yarnspirations.com/products/red-heart-crochet-beginner-bunny",
+          "https://www.amigurumi.com/shop/Alter-Ego-Crochet/Bob-the-Bunny/"
+        ],
+        "note": "The references validate the beginner amigurumi structure and use of magic ring, single crochet, increases, decreases, stuffing and assembly. The simplified learner pattern below is original and is not a reproduction of either source."
+      },
+      "materials": [
+        {
+          "item": "Yarn",
+          "detail": "Cotton or acrylic yarn suitable for a 3–3.5 mm hook",
+          "quantity": "Small amount"
+        },
+        {
+          "item": "Crochet hook",
+          "detail": "3.5 mm starting point",
+          "quantity": "1"
+        },
+        {
+          "item": "Stuffing",
+          "detail": "Polyester fiberfill",
+          "quantity": "Small amount"
+        },
+        {
+          "item": "Tapestry needle",
+          "detail": "For sewing and weaving in ends",
+          "quantity": "1"
+        },
+        {
+          "item": "Safety eyes or embroidery thread",
+          "detail": "Use embroidery instead of safety eyes for very young children",
+          "quantity": "2 eyes or small amount of thread"
+        },
+        {
+          "item": "Scissors",
+          "detail": "For cutting yarn",
+          "quantity": "1"
+        }
+      ],
+      "stitch_glossary": [
+        {
+          "abbreviation": "MR",
+          "name": "Magic Ring",
+          "description": "An adjustable loop used to begin working in the round."
+        },
+        {
+          "abbreviation": "sc",
+          "name": "Single Crochet",
+          "description": "The basic compact stitch used for the bunny body."
+        },
+        {
+          "abbreviation": "inc",
+          "name": "Increase",
+          "description": "Work two single crochets into the same stitch to increase the stitch count by one."
+        },
+        {
+          "abbreviation": "dec",
+          "name": "Decrease",
+          "description": "Combine two stitches into one to reduce the stitch count."
+        },
+        {
+          "abbreviation": "sl st",
+          "name": "Slip Stitch",
+          "description": "A low-profile stitch used for joining or finishing."
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "name": "Start the head",
+          "instruction": "Make a magic ring and work 6 single crochets into it. Close the ring.",
+          "stitch_count": 6,
+          "expected_result": "A tiny closed circle forms the center of the head.",
+          "common_mistakes": [
+            "Losing the stitch count.",
+            "Pulling the ring so tightly that the hook cannot enter the stitches."
+          ],
+          "ai_help_context": "The learner is beginning an amigurumi-style piece and needs help maintaining a tight, compact center."
+        },
+        {
+          "step_number": 2,
+          "name": "Increase the head",
+          "instruction": "Work an increase in every stitch of the previous round, giving you 12 single crochet stitches.",
+          "stitch_count": 12,
+          "expected_result": "The circle should widen evenly without large gaps.",
+          "common_mistakes": [
+            "Putting only one stitch into an increase point.",
+            "Adding increases randomly and creating an uneven shape."
+          ],
+          "ai_help_context": "The learner needs to understand that an increase means two single crochets in the same base stitch."
+        },
+        {
+          "step_number": 3,
+          "name": "Build the head",
+          "instruction": "Work 3 rounds of 12 single crochets, keeping the stitch count constant.",
+          "stitch_count": 12,
+          "expected_result": "The piece begins to form a small rounded tube.",
+          "common_mistakes": [
+            "Accidentally increasing or decreasing.",
+            "Losing the beginning of the round."
+          ],
+          "ai_help_context": "The learner is working continuous rounds and may need help using a stitch marker to track the round start."
+        },
+        {
+          "step_number": 4,
+          "name": "Shape the head",
+          "instruction": "Work one decrease at every third stitch around the round, then continue single crochet rounds until the opening is small enough to add stuffing.",
+          "expected_result": "The top should begin narrowing into a rounded head.",
+          "common_mistakes": [
+            "Decreasing too many times in one round.",
+            "Overstuffing before the opening is ready."
+          ],
+          "ai_help_context": "The learner is shaping a rounded amigurumi form using decreases and may need help understanding why the stitch count gets smaller."
+        },
+        {
+          "step_number": 5,
+          "name": "Stuff and close",
+          "instruction": "Add small amounts of stuffing until the head is firm but not stretched. Continue decreasing around the opening until it closes. Fasten off.",
+          "expected_result": "A firm rounded head with a closed bottom.",
+          "common_mistakes": [
+            "Overstuffing and stretching the stitches.",
+            "Leaving a large opening at the end."
+          ],
+          "ai_help_context": "The learner needs help judging stuffing density and closing an amigurumi opening neatly."
+        },
+        {
+          "step_number": 6,
+          "name": "Make the ears",
+          "instruction": "Make two small ear pieces using a short chain and single crochet stitches worked along the chain. Fasten off each ear and leave a sewing tail.",
+          "expected_result": "Two matching narrow ear shapes.",
+          "common_mistakes": [
+            "Making the ears different lengths.",
+            "Forgetting to leave a sewing tail."
+          ],
+          "ai_help_context": "The learner is making separate flat pieces and may need help keeping both ears the same size."
+        },
+        {
+          "step_number": 7,
+          "name": "Assemble the bunny",
+          "instruction": "Position the two ears symmetrically on top of the head and sew them securely with the yarn tails. Add eyes using safety eyes or embroidery thread.",
+          "expected_result": "The finished piece should clearly resemble a small bunny.",
+          "common_mistakes": [
+            "Sewing the ears at different heights.",
+            "Leaving loose ends after assembly."
+          ],
+          "ai_help_context": "The learner is assembling the bunny and needs guidance on symmetry and secure finishing."
+        }
+      ]
+    },
+    {
+      "project_id": "coaster-001",
+      "title": "Simple Single-Crochet Coaster",
+      "emoji": "🧺",
+      "difficulty": "Beginner",
+      "craft_type": "Crochet",
+      "estimated_time": "30–45 minutes",
+      "finished_size": "Approximately 4 inches square, depending on tension",
+      "source_notes": {
+        "type": "reference_and_original_simple_pattern",
+        "references": [
+          "https://www.yarnspirations.com/collections/patterns/products/how-to-crochet-coasters-for-beginners",
+          "https://www.yarnspirations.com/blogs/how-to/beginner-crochet-coasters",
+          "https://craftyarncouncil.com/standards/crochet-abbreviations"
+        ],
+        "note": "Beginner coaster references validate the project type and foundational techniques. The square single-crochet stitch counts below are an original simplified learning pattern."
+      },
+      "materials": [
+        {
+          "item": "Yarn",
+          "detail": "100% cotton is recommended for a practical coaster",
+          "quantity": "Small amount"
+        },
+        {
+          "item": "Crochet hook",
+          "detail": "5.0 mm starting point; adjust to yarn and tension",
+          "quantity": "1"
+        },
+        {
+          "item": "Tapestry needle",
+          "detail": "For weaving in the final ends",
+          "quantity": "1"
+        },
+        {
+          "item": "Scissors",
+          "detail": "For cutting yarn",
+          "quantity": "1"
+        }
+      ],
+      "stitch_glossary": [
+        {
+          "abbreviation": "sl knot",
+          "name": "Slip Knot",
+          "description": "A starting knot that creates the adjustable loop placed on the hook."
+        },
+        {
+          "abbreviation": "ch",
+          "name": "Chain",
+          "description": "Yarn over and pull through the loop on the hook."
+        },
+        {
+          "abbreviation": "sc",
+          "name": "Single Crochet",
+          "description": "Insert the hook, yarn over and pull up a loop, then yarn over and pull through both loops."
+        },
+        {
+          "abbreviation": "st",
+          "name": "Stitch",
+          "description": "One completed crochet stitch."
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "name": "Make the foundation chain",
+          "instruction": "Make a slip knot and chain 21 stitches.",
+          "stitch_count": 21,
+          "expected_result": "A foundation chain with 21 chain stitches.",
+          "common_mistakes": [
+            "Making the chain too tight to insert the hook.",
+            "Accidentally counting the slip knot as a chain."
+          ],
+          "ai_help_context": "The learner is creating the foundation chain and may need help keeping chain tension even."
+        },
+        {
+          "step_number": 2,
+          "name": "Work the first row",
+          "instruction": "Insert the hook into the second chain from the hook and make 1 single crochet. Continue with 1 single crochet in each remaining chain.",
+          "stitch_count": 20,
+          "expected_result": "The first row contains 20 single crochet stitches.",
+          "common_mistakes": [
+            "Crocheting into the first loop on the hook.",
+            "Skipping a chain while working across."
+          ],
+          "ai_help_context": "The learner needs to understand the second-chain starting point and keep a 20-stitch row count."
+        },
+        {
+          "step_number": 3,
+          "name": "Turn and begin the next row",
+          "instruction": "Chain 1, turn your work, and make 1 single crochet in each stitch across the row.",
+          "stitch_count": 20,
+          "expected_result": "The second row should have the same 20-stitch width as the first.",
+          "common_mistakes": [
+            "Forgetting to turn the work.",
+            "Missing the first or last stitch of the row."
+          ],
+          "ai_help_context": "The learner is moving from a foundation chain to repeated rows and may lose the edge stitches."
+        },
+        {
+          "step_number": 4,
+          "name": "Repeat the rows",
+          "instruction": "Continue repeating Step 3 until you have 20 rows total. Count each completed row to keep the coaster square.",
+          "stitch_count": 20,
+          "expected_result": "The piece should gradually form a square with 20 stitches across and 20 rows.",
+          "common_mistakes": [
+            "Ending with fewer or more than 20 rows.",
+            "Dropping an edge stitch and making the coaster narrower."
+          ],
+          "ai_help_context": "The learner is repeating rows and needs help counting rows and recognizing when an edge stitch has been missed."
+        },
+        {
+          "step_number": 5,
+          "name": "Fasten off",
+          "instruction": "After the 20th row, cut the yarn leaving a tail, pull the tail through the final loop, and tighten gently.",
+          "expected_result": "The final stitch is secured and the coaster will not unravel.",
+          "common_mistakes": [
+            "Cutting the tail too short.",
+            "Pulling the final loop too loosely."
+          ],
+          "ai_help_context": "The learner is finishing the project and needs to secure the final loop before weaving in the end."
+        },
+        {
+          "step_number": 6,
+          "name": "Weave in the ends",
+          "instruction": "Use a tapestry needle to weave the starting and ending yarn tails through several stitches on the back of the coaster. Trim the excess yarn.",
+          "expected_result": "No loose yarn tails remain visible on the finished coaster.",
+          "common_mistakes": [
+            "Weaving too little yarn.",
+            "Cutting the yarn before it is securely woven."
+          ],
+          "ai_help_context": "The learner is finishing the coaster and may need a simple explanation of how to hide yarn tails safely."
+        }
+      ]
+    }
+  ]
+}
